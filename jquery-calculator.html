@@ -83,25 +83,90 @@ $(document).ready(function() {
   var result;
 
   var numberButtons = $(".number");
+  var operatorButtons = $(".operator");
+  var equalsButton = $(".equal");
+  var clearButton = $("clear");
   var firstNumberH1 = $("#first-number");
   var operatorH1 = $("#operator");
   var secondNumberH1 = $("#second-number");
   var resultH1 = $("#result");
 
+  clearButton.on("click", function(){
+    firstNumberH1.empty();
+    operatorH1.empty();
+    secondNumberH1.empty();
+    resultH1.empty();
+  })
+
   numberButtons.on("click", function(event){
     console.log(this);
 
-    var thisObject = $("this");
+    var thisObject = $(this);
     console.log(thisObject.val());
 
     firstNumber = parseInt(thisObject.val());
 
     firstNumberH1.text(firstNumber);
 
+    operatorButtons.on("click", function() {
 
-    // firstNumber = parseInt(thisObject.text());
-    // firstNumber2 = thisObject.attr("value");
-    // console.log(firstNumber2);
+      numberButtons.off("click");
+
+      var thisObject = $(this);
+      operator = thisObject.val();
+      console.log(operator);
+
+      if (operator === "divide"){
+        operatorSymbol = "/";
+      } else if (operator === "power") {
+        operatorSymbol = "^";
+      } else if (operator === "times") {
+        operatorSymbol = "*";
+      } else if (operator === "minus") {
+        operatorSymbol = "-";
+      } else if (operator === "plus") {
+        operatorSymbol = "+";
+      }
+
+      operatorH1.text(operatorSymbol);
+
+      numberButtons.on("click", function(){
+        var thisObject = $(this);
+        console.log(thisObject.val());
+
+        secondNumber = parseInt(thisObject.val());
+
+        secondNumberH1.text(secondNumber);
+
+        equalsButton.on("click", function(){
+
+          if (operator === "divide"){
+            result = firstNumber / secondNumber;
+          } else if (operator === "power") {
+            result = firstNumber ** secondNumber;
+          } else if (operator === "times") {
+            result = firstNumber * secondNumber;
+          } else if (operator === "minus") {
+            result = firstNumber - secondNumber;
+          } else if (operator === "plus") {
+            result = firstNumber + secondNumber;
+          }
+          console.log(result);
+
+          resultH1.text(result);
+
+
+        })
+
+        
+
+
+      })
+
+
+    })
+
+
   })
 
 
