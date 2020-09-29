@@ -77,7 +77,32 @@
 
 $(document).ready(function() {
 
-// Your code here...
+  var firstNumber;
+  var secondNumber;
+  var operator;
+  var result;
+
+  var numberButtons = $(".number");
+  var firstNumberH1 = $("#first-number");
+  var operatorH1 = $("#operator");
+  var secondNumberH1 = $("#second-number");
+  var resultH1 = $("#result");
+
+  numberButtons.on("click", function(event){
+    console.log(this);
+
+    var thisObject = $("this");
+    console.log(thisObject.val());
+
+    firstNumber = parseInt(thisObject.val());
+
+    firstNumberH1.text(firstNumber);
+
+
+    // firstNumber = parseInt(thisObject.text());
+    // firstNumber2 = thisObject.attr("value");
+    // console.log(firstNumber2);
+  })
 
 
 });
